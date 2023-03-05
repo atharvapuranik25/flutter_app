@@ -56,8 +56,7 @@ class _MyAppState extends State<MyApp> {
                     ],
                   ),
                 )
-              : Image.network(
-                  'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-14879-frusciante-1800-1396286065.jpg?w=1024'),
+              : Image.asset('images/Starting_page.png'),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
