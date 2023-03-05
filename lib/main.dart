@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String buttonName = "Click";
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +24,40 @@ class _MyAppState extends State<MyApp> {
           title: const Text('App Title'),
         ),
         body: Center(
-          child: ElevatedButton(
-            onPressed: () => {
-              setState(() {
-                buttonName = 'Clicked';
-              })
-            },
-            child: Text(buttonName),
-          ),
+          child: currentIndex == 0
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: Colors.black,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          onPrimary: Colors.white,
+                          primary: Colors.orange,
+                        ),
+                        onPressed: () => {
+                          setState(() {
+                            buttonName = 'Clicked';
+                          })
+                        },
+                        child: Text(buttonName),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => {
+                          setState(() {
+                            buttonName = 'Clicked';
+                          })
+                        },
+                        child: Text(buttonName),
+                      ),
+                    ],
+                  ),
+                )
+              : Image.network(
+                  'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-14879-frusciante-1800-1396286065.jpg?w=1024'),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
@@ -43,6 +70,12 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.settings),
             )
           ],
+          currentIndex: currentIndex,
+          onTap: (int index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
         ),
       ),
     );
